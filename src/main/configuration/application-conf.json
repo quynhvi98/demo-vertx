@@ -1,0 +1,16 @@
+{
+  "http.server.config": {
+    "http.server.port": 8080,
+    "library.db.eb.address": "library.db.queue"
+  },
+  "postgresql.config": {
+    "library.db.eb.address": "library.db.queue",
+    "postgresql.host": "localhost",
+    "postgresql.port": 54320,
+    "postgresql.database": "postgres",
+    "postgresql.username": "postgres",
+    "postgresql.password": "root",
+    "postgresql.pool.maxsize": 20
+  },
+
+}
