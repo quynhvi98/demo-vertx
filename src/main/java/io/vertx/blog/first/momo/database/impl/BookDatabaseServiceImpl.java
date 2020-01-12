@@ -84,20 +84,20 @@ public class BookDatabaseServiceImpl implements BookDatabaseService {
     @Override
     public BookDatabaseService getBookById(int id, Handler<AsyncResult<JsonObject>> resultHandler) {
 //        //TODO when Rxi-fied API supports wildcard type, then we can use Rxi-fied collector API OOTB.
-//        pgConnectionPool.getDelegate().preparedQuery(SQL_FIND_BOOK_BY_ID, io.reactiverse.pgclient.Tuple.of(id), BOOK_JSON_ARRAY_COLLECTOR, ar -> {
-//            if (ar.succeeded()) {
-//                JsonArray jsonArray = ar.result().value();
-//                if (jsonArray.size() == 0) {
-//                    resultHandler.handle(Future.succeededFuture(emptyJsonObject()));
-//                } else {
-//                    JsonObject dbResponse = jsonArray.getJsonObject(0);
-//                    resultHandler.handle(Future.succeededFuture(dbResponse));
-//                }
-//            } else {
-//                LOGGER.error("Failed to get the book by id " + id, ar.cause());
-//                resultHandler.handle(Future.failedFuture(ar.cause()));
-//            }
-//        });
+        pgConnectionPool.getDelegate().preparedQuery(SQL_FIND_BOOK_BY_ID, io.reactiverse.pgclient.Tuple.of(id), BOOK_JSON_ARRAY_COLLECTOR, ar -> {
+            if (ar.succeeded()) {
+                JsonArray jsonArray = ar.result().value();
+                if (jsonArray.size() == 0) {
+                    resultHandler.handle(Future.succeededFuture(emptyJsonObject()));
+                } else {
+                    JsonObject dbResponse = jsonArray.getJsonObject(0);
+                    resultHandler.handle(Future.succeededFuture(dbResponse));
+                }
+            } else {
+                LOGGER.error("Failed to get the book by id " + id, ar.cause());
+                resultHandler.handle(Future.failedFuture(ar.cause()));
+            }
+        });
         return this;
     }
 
@@ -108,16 +108,7 @@ public class BookDatabaseServiceImpl implements BookDatabaseService {
 //        Tuple params = dynamicQuery.getParams();
 //
 //        //TODO when Rxi-fied API supports wildcard type, then we can use Rxi-fied collector API OOTB.
-//        pgConnectionPool.getDelegate().preparedQuery(preparedQuery, params.getDelegate(), BOOK_JSON_ARRAY_COLLECTOR, ar -> {
-//            if (ar.succeeded()) {
-//                JsonArray jsonArray = ar.result().value();
-//                resultHandler.handle(Future.succeededFuture(jsonArray));
-//            } else {
-//                LOGGER.error("Failed to get the filtered books by the following conditions"
-//                        + params.toString(), ar.cause());
-//                resultHandler.handle(Future.failedFuture(ar.cause()));
-//            }
-//        });
+
 
         return this;
     }
