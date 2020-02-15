@@ -8,8 +8,13 @@ public class MainVerticle extends AbstractVerticle {
     @Override
     public void start(Promise<Void> promise) throws Exception {
         Future<Void> steps = prepareDatabase().compose(v -> startHttpServer());
-        steps.setHandler(promise);
-        promise.complete();
+        steps.setHandler(ar -> {
+            if (ar.succeeded()) {
+                promise.complete();
+            } else {
+                promise.fail(ar.cause());
+            }
+        });
     }
 
     private Future<Void> prepareDatabase() {
@@ -23,4 +28,5 @@ public class MainVerticle extends AbstractVerticle {
         // (...)
         return (Future<Void>) promise.future();
     }
+
 }
