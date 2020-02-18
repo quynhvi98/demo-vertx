@@ -15,4 +15,4 @@
         <appender-ref ref="STDOUT"/>
     </root>
 
-</configuration>KC
+</configuration>
