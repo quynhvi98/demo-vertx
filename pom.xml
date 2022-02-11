@@ -7,7 +7,7 @@
     <artifactId>example.demo.vertx</artifactId>
     <version>1.0-SNAPSHOT</version>
     <properties>
-        <vertx.version>3.8.1</vertx.version>
+        <vertx.version>3.9.4</vertx.version>
         <pgClient.version>0.11.2</pgClient.version>
         <slf4j.version>1.7.25</slf4j.version>
         <log4j.version>2.9.1</log4j.version>
